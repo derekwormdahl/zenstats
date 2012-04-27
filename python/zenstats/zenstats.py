@@ -1,5 +1,5 @@
 import web
-import google-analytics/zen_analytics
+import zen_analytics
 
 urls = (
     '/', 'index'
@@ -7,7 +7,8 @@ urls = (
 
 class index:
     def GET(self):
-        return "Hello, world!"
+	return zen_analytics.start_zen_analytics()
+        ##return "Hello, world!"
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
