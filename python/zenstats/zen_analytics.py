@@ -37,6 +37,8 @@ def start_zen_analytics():
 
   # Authenticate and construct service.
   service = sample_utils.initialize_service()
+ 
+  print service
 
   # Try to make a request to the API. Print the results or handle errors.
   try:
@@ -85,15 +87,14 @@ def print_results(results):
     results: The response returned from the Core Reporting API.
   """
 
-  return print_report_info(results)
-"""
+  print_report_info(results)
   print_pagination_info(results)
   print_profile_info(results)
   print_query(results)
   print_column_headers(results)
   print_totals_for_all_results(results)
-  print_rows(results)
-"""
+  ##return print_rows(results)
+  return ''
 
 
 def print_report_info(results):
@@ -217,13 +218,18 @@ def print_rows(results):
     results: The response returned from the Core Reporting API.
   """
 
-  print 'Rows:'
+  str_list = []
+  #print 'Rows:'
+  str_list.append('<h2>Rows:</h2>')
   if results.get('rows', []):
     for row in results.get('rows'):
-      print '\t'.join(row)
+      ##print '\t'.join(row)
+      str_list.append(row)
   else:
-    print 'No Rows Found'
+    ##print 'No Rows Found'
+    str_list.append('No Rows Found')
 
+  return ''.join(str_list)
 
 if __name__ == '__main__':
   main(sys.argv)
